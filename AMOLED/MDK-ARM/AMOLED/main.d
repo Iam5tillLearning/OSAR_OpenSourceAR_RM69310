@@ -1,0 +1,32 @@
+amoled\main.o: ../Core/Src/main.c
+amoled\main.o: ../Core/Inc/main.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+amoled\main.o: ../Core/Inc/stm32f1xx_hal_conf.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
+amoled\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
+amoled\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
+amoled\main.o: ../Drivers/CMSIS/Include/core_cm3.h
+amoled\main.o: D:\Micro Control plan\MDK526\ARM\ARMCC\Bin\..\include\stdint.h
+amoled\main.o: ../Drivers/CMSIS/Include/cmsis_version.h
+amoled\main.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+amoled\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+amoled\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+amoled\main.o: D:\Micro Control plan\MDK526\ARM\ARMCC\Bin\..\include\stddef.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+amoled\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+amoled\main.o: ../Core/Inc/spi.h
+amoled\main.o: ../Core/Inc/usart.h
+amoled\main.o: ../Core/Inc/gpio.h
