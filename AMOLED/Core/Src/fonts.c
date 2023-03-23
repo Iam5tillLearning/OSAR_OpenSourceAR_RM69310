@@ -1,5 +1,52 @@
 #include "main.h"
 
+/*
+void AMOLED_Clear(uint16_t Column,uint16_t ROW,uint16_t color)
+{  	
+	uint16_t i,j;
+	
+	AMOLED_Block_Write(0,Column-1,0,ROW-1);
+
+	for(i=0;i<Column;i++)
+		for(j=0;j<ROW;j++)
+			{
+				Write_Disp_Data(color);
+			}
+
+}
+
+void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t back_colour,const uint8_t font)
+{
+		uint16_t i,j;
+		uint8_t font_temp_table[8];
+
+		for(i=0;i<5;i++)
+		{
+			font_temp_table[i]=font_5_8[font][i];	
+		}
+
+		AMOLED_Block_Write(Column,Column+2,ROW,ROW+8);
+	
+		for(j=0;j<8;j++)
+		{
+			for(i=0;i<8;i++)
+			{
+				if((font_temp_table[i]&0x01)==0x01)
+				{
+						Write_Disp_Data(font_colour);
+						Write_Disp_Data(font_colour);
+				}
+				else
+				{
+						Write_Disp_Data(back_colour);
+						Write_Disp_Data(back_colour);
+				}
+				font_temp_table[i]=font_temp_table[i]>>1;
+			}
+		}
+	
+}
+ */
 const uint16_t saber[1152]  = {
 /* 0X00,0X10,0X20,0X00,0X12,0X00,0X01,0X1B, */
 0X24,0X29,0X45,0X29,0XE6,0X39,0X68,0X4A,0XEA,0X5A,0X0A,0X63,0X0B,0X63,0X2B,0X6B,

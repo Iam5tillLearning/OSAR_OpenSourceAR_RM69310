@@ -31,7 +31,8 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 extern uint16_t saber[][128];
-uint8_t  Value[20];//接收数据存放数组
+#define RxLenth 66
+uint8_t  Value[RxLenth];//接收数据存放数组
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -254,32 +255,7 @@ void AMOLED_Clear(uint16_t Column,uint16_t ROW,uint16_t color)
 			}
 
 }
-/*
-static void ST7789_WriteData(uint8_t *buff, size_t buff_size)
-{
-	HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_RESET);//片选拉低 
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);//C/D拉高
 
-	// split data in small chunks because HAL can't send more than 64K at once
-
-	while (buff_size > 0) {
-		uint16_t chunk_size = buff_size > 65535 ? 65535 : buff_size;
-		HAL_SPI_Transmit(&hspi1, buff, chunk_size, HAL_MAX_DELAY);
-		buff += chunk_size;
-		buff_size -= chunk_size;
-	}
-
-	HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_SET);//片选拉高
-}
-
-void ST7789_DrawImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t *data)
-{
-
-	AMOLED_Block_Write(0,x-1,0,y-1);
-	ST7789_WriteData((uint8_t *)data, sizeof(uint16_t) * w * h);
-}
-
-*/
 void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t back_colour,const uint8_t font)
 {
 		uint16_t i,j;
@@ -290,11 +266,7 @@ void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t bac
 			font_temp_table[i]=font_5_8[font][i];	
 		}
 
-		font_temp_table[5]=0;
-		font_temp_table[6]=0;
-		font_temp_table[7]=0;
-
-		AMOLED_Block_Write(Column,Column+8,ROW,ROW+8);
+		AMOLED_Block_Write(Column,Column+2,ROW,ROW+8);
 	
 		for(j=0;j<8;j++)
 		{
@@ -303,9 +275,11 @@ void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t bac
 				if((font_temp_table[i]&0x01)==0x01)
 				{
 						Write_Disp_Data(font_colour);
+						Write_Disp_Data(font_colour);
 				}
 				else
 				{
+						Write_Disp_Data(back_colour);
 						Write_Disp_Data(back_colour);
 				}
 				font_temp_table[i]=font_temp_table[i]>>1;
@@ -317,9 +291,26 @@ void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t bac
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uarthandle)
 {
-	HAL_UART_Receive_IT(&huart1,(uint8_t*)&Value,1);
-	HAL_UART_Transmit (&huart1 ,(uint8_t*)&Value,1,0xfff);//接收到的再发送出去
+	HAL_UART_Receive_IT(&huart1,(uint8_t*)&Value,RxLenth);
+	//HAL_UART_Transmit (&huart1 ,(uint8_t*)&Value,64,0xfff);//接收到的再发送出去
+
+	AMOLED_Block_Write(Value[64],Value[64]+8,Value[65],Value[65]+8);
+	uint16_t j;
+	for(j=0;j<64;j++)
+	{
+		if(Value[j]==0x01)
+		{
+			Write_Disp_Data(0xffff);
+			Write_Disp_Data(0xffff);
+		}
+		else
+		{
+			Write_Disp_Data(0x0000);
+			Write_Disp_Data(0x0000);
+		}
+	}
 }
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -367,15 +358,15 @@ int main(void)
 
 	LCD_Init();
 
-	HAL_UART_Receive_IT(&huart1,(uint8_t*)&Value,1);
+	HAL_UART_Receive_IT(&huart1,(uint8_t*)&Value,RxLenth);
 
 //	uint8_t id[3];
 
 //	HAL_SPI_Receive(&hspi1,id,3,HAL_MAX_DELAY);
 
-	AMOLED_Clear(30,60,0xffff);//经测试能用
+	AMOLED_Clear(30,30,0xaaaa);//经测试能用
 
-	AMOLED_Clear(30,60,0x0000);//经测试能用
+	AMOLED_Clear(30,30,0x0000);//经测试能用
 
 	//LCD_font_5_7(64,64,0xffff,0x0000,2);
 
