@@ -207,7 +207,7 @@ void WriteData(unsigned int i)
 void WriteDispData_2(unsigned char DataH,unsigned char DataL)
 {
 
-	SendDataSPI(DataH);
+	//SendDataSPI(DataH);
 	SendDataSPI(DataL);
 
 }
@@ -237,7 +237,7 @@ void Write_Disp_Data(uint16_t val)
 
 	HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_RESET);//片选拉低 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);//C/D拉高
-	WriteDispData_2(val&0xff,val>>8);
+	SendDataSPI(val);
 	HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_SET);//片选拉高
 
 }
@@ -256,36 +256,23 @@ void AMOLED_Clear(uint16_t Column,uint16_t ROW,uint16_t color)
 
 }
 
-void LCD_font_5_7(uint16_t Column,uint16_t ROW,uint16_t font_colour,uint16_t back_colour,const uint8_t font)
+void LCD_font_5_7(void)
 {
-		uint16_t i,j;
-		uint8_t font_temp_table[8];
-
-		for(i=0;i<5;i++)
+	AMOLED_Block_Write(Value[64],Value[64]+7,Value[65],Value[65]+10);
+	uint16_t j;
+	for(j=0;j<48;j++)
+	{
+		if(Value[j]==0x01)
 		{
-			font_temp_table[i]=font_5_8[font][i];	
+			Write_Disp_Data(0xffff);
+			//Write_Disp_Data(0xffff);
 		}
-
-		AMOLED_Block_Write(Column,Column+2,ROW,ROW+8);
-	
-		for(j=0;j<8;j++)
+		else
 		{
-			for(i=0;i<8;i++)
-			{
-				if((font_temp_table[i]&0x01)==0x01)
-				{
-						Write_Disp_Data(font_colour);
-						Write_Disp_Data(font_colour);
-				}
-				else
-				{
-						Write_Disp_Data(back_colour);
-						Write_Disp_Data(back_colour);
-				}
-				font_temp_table[i]=font_temp_table[i]>>1;
-			}
+			Write_Disp_Data(0x0000);
+			//Write_Disp_Data(0x0000);
 		}
-	
+	}
 }
 
 
@@ -293,22 +280,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uarthandle)
 {
 	HAL_UART_Receive_IT(&huart1,(uint8_t*)&Value,RxLenth);
 	//HAL_UART_Transmit (&huart1 ,(uint8_t*)&Value,64,0xfff);//接收到的再发送出去
+	LCD_font_5_7();
 
-	AMOLED_Block_Write(Value[64],Value[64]+8,Value[65],Value[65]+8);
-	uint16_t j;
-	for(j=0;j<64;j++)
-	{
-		if(Value[j]==0x01)
-		{
-			Write_Disp_Data(0xffff);
-			Write_Disp_Data(0xffff);
-		}
-		else
-		{
-			Write_Disp_Data(0x0000);
-			Write_Disp_Data(0x0000);
-		}
-	}
 }
 
 /* USER CODE END PV */
@@ -367,14 +340,6 @@ int main(void)
 	AMOLED_Clear(30,30,0xaaaa);//经测试能用
 
 	AMOLED_Clear(30,30,0x0000);//经测试能用
-
-	//LCD_font_5_7(64,64,0xffff,0x0000,2);
-
-	LCD_font_5_7(32,32,0xffff,0x0000,3);
-
-	//LCD_font_5_7(78,78,0xffff,0x0000,6);
-
-	//LCD_font_5_7(128,128,0xffff,0x0000,5);//不能用
 
 	//uint16_t color=0xffff;
 	//ST7789_DrawImage(0,0,128,128,(uint16_t *)saber);
