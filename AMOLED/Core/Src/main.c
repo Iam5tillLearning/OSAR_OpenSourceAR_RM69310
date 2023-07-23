@@ -30,7 +30,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-extern uint16_t font_5_8[][5];
+extern uint16_t saber[][128];
 #define RxLenth 8
 uint8_t  Value[RxLenth];//接收数据存放数组
 /* USER CODE END PTD */
