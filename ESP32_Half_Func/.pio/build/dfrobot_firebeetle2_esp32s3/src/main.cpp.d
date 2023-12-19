@@ -175,6 +175,7 @@
  C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/esp_hw_support/include/soc/esp32/spiram.h \
  C:/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
  C:/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
+ src/Display.h src/General.h \
  C:/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src/BLEDevice.h \
  C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/bt/host/bluedroid/api/include/api/esp_gap_ble_api.h \
  C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/bt/host/bluedroid/api/include/api/esp_bt_defs.h \

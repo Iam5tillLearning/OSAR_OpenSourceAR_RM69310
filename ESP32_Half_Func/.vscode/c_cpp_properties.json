@@ -10,8 +10,8 @@
             "includePath": [
                 "d:/openAR/OSAR/Program/OSAR_OpenSourceAR_RM69310/ESP32_Half_Func/include",
                 "d:/openAR/OSAR/Program/OSAR_OpenSourceAR_RM69310/ESP32_Half_Func/src",
-                "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
+                "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/newlib/platform_include",
                 "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include",
                 "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include/esp_additions/freertos",
@@ -241,8 +241,8 @@
                 "path": [
                     "d:/openAR/OSAR/Program/OSAR_OpenSourceAR_RM69310/ESP32_Half_Func/include",
                     "d:/openAR/OSAR/Program/OSAR_OpenSourceAR_RM69310/ESP32_Half_Func/src",
-                    "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
+                    "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/newlib/platform_include",
                     "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include",
                     "C:/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include/esp_additions/freertos",
